@@ -17,7 +17,7 @@ export const fetchData = (search) => {
   return (dispatch) => {
     dispatch(fetchDataStart());
     return axios
-      .get(`http://opentable.herokuapp.com/api/restaurants?city=${search}`)
+      .get(`https://opentable.herokuapp.com/api/restaurants?city=${search}`)
       .then((res) => {
         const data = res.data.restaurants;
         dispatch(fetchDataSuccess(data));
