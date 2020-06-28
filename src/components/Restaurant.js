@@ -38,21 +38,24 @@ export class UnConnectedRestaurant extends Component {
           </span>
           Restaurant Tracker
         </h1>
-        <Input
-          data-test="search-inp-cmp"
-          labelText="City"
-          inputVal={this.state.search}
-          updateSearch={this.updateSearch}
-          placeholder="Search for City: eg: toronto"
-        />
-        <button
-          data-test="search-btn"
-          className="btn"
-          disabled={!this.state.search.length}
-          onClick={() => this.props.fetchData(this.state.search)}
-        >
-          Fetch data
-        </button>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <Input
+            data-test="search-inp-cmp"
+            labelText="City"
+            inputVal={this.state.search}
+            updateSearch={this.updateSearch}
+            placeholder="Search for City: eg: toronto"
+          />
+          <button
+            type="submit"
+            data-test="search-btn"
+            className="btn"
+            disabled={!this.state.search.length}
+            onClick={() => this.props.fetchData(this.state.search)}
+          >
+            Fetch data
+          </button>
+        </form>
 
         {restaurants.length > 0 && (
           <SearchList

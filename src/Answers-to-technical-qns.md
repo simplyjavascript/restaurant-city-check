@@ -13,15 +13,16 @@ So no more componentDidMount/componentDidUpdate.
 
 eg of a custom hook that has a hover functionality:
 
+```javascript
 // useHover.js
 
 import React, { useEffect } from "react";
 const useHover = (currentHoverFlag) => {
-const [hovering, setHovering] = React.useState(false);
-useEffect(() => {
-setHovering(currentHoverFlag);
-}, [currentHoverFlag]);
-return hovering;
+  const [hovering, setHovering] = React.useState(false);
+  useEffect(() => {
+    setHovering(currentHoverFlag);
+  }, [currentHoverFlag]);
+  return hovering;
 };
 
 export default useHover;
@@ -32,23 +33,25 @@ import React, { useState } from "react";
 import useHover from "../custom-hooks/useHover";
 
 const Tooltip = (props) => {
-const [hover, setHover] = useState(false);
-const result = useHover(hover);
-const { tooltip, btnClass, handleClick } = props;
-return (
-<span className="tooltip_wrapper">
-{result && <span className="tooltip"> {tooltip} </span>}
-<button
-onMouseOut={() => setHover(false)}
-onMouseOver={() => setHover(true)}
-onClick={handleClick} >
-<i className={`fa ${btnClass} fa-2x`}></i>
-</button>
-</span>
-);
+  const [hover, setHover] = useState(false);
+  const result = useHover(hover);
+  const { tooltip, btnClass, handleClick } = props;
+  return (
+    <span className="tooltip_wrapper">
+      {result && <span className="tooltip"> {tooltip} </span>}
+      <button
+        onMouseOut={() => setHover(false)}
+        onMouseOver={() => setHover(true)}
+        onClick={handleClick}
+      >
+        <i className={`fa ${btnClass} fa-2x`}></i>
+      </button>
+    </span>
+  );
 };
 
 export default Tooltip;
+```
 
 ## 3.How would you track down a performance issue in production? Have you ever had to do this?
 
